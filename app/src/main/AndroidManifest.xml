@@ -37,6 +37,7 @@
             android:name=".ui.nhanvien.NhanVienDetailActivity"
             android:exported="false" />
 
+        <!-- Thống kê -->
         <activity
             android:name=".ui.thongke.ThongKeActivity"
             android:exported="false" />
