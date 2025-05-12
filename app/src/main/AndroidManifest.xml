@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qlthuvien"
         tools:targetApi="31">
-
         <!-- Launcher -->
         <activity
             android:name=".ui.home.HomeActivity"
@@ -37,6 +37,9 @@
             android:name=".ui.nhanvien.NhanVienDetailActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.thongke.ThongKeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
