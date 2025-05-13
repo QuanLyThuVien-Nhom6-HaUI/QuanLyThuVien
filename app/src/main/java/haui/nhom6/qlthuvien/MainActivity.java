@@ -1,6 +1,7 @@
 package haui.nhom6.qlthuvien;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -32,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dbHelper = new DatabaseHelper(this);
-
         EditText usernameEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.loginButton);
         ImageButton exitButton = findViewById(R.id.exitButton);
         ImageButton togglePasswordButton = findViewById(R.id.togglePassword);
+        ImageButton smsButton = findViewById(R.id.smsButton);
+        ImageButton introButton = findViewById(R.id.introButton);
 
         loginButton.setOnClickListener(v -> {
             String tenDangNhap = usernameEditText.getText().toString().trim();
@@ -54,16 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     String vaiTro = dbHelper.layVaiTro(tenDangNhap);
                     Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     if ("QuanLy".equalsIgnoreCase(vaiTro)) {
-                        startActivity(new Intent(MainActivity.this, ActivityAdmin.class));
+                        startActivity(new Intent(MainActivity.this, AdminActivity.class));
                     } else {
-                        startActivity(new Intent(MainActivity.this, ActivityUser.class));
+                        startActivity(new Intent(MainActivity.this, UserActivity.class));
                     }
                 }
             }
         });
-
-
-
 
         exitButton.setOnClickListener(v -> {
             finish();
@@ -79,6 +78,22 @@ public class MainActivity extends AppCompatActivity {
                 togglePasswordButton.setImageResource(R.drawable.ic_eye);
             }
             passwordEditText.setSelection(passwordEditText.getText().length());
+        });
+
+        smsButton.setOnClickListener(v -> {
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+            smsIntent.setData(Uri.parse("smsto:" + "0123456789"));
+            smsIntent.putExtra("sms_body", "Xin chào, tôi cần hỗ trợ đăng nhập vào ứng dụng Quản Lý Thư Viện.");
+            if (smsIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(smsIntent);
+            } else {
+                Log.d("MainActivity", "No SMS app found for Intent: " + smsIntent.toString());
+                Toast.makeText(this, "Không tìm thấy ứng dụng nhắn tin. Vui lòng cài đặt ứng dụng nhắn tin.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        introButton.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, IntroActivity.class));
         });
     }
 

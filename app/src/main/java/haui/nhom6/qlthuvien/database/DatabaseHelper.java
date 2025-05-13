@@ -71,7 +71,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] cot = {COT_TEN_DANGNHAP};
         String dieuKien = COT_TEN_DANGNHAP + "=?";
-        Cursor cursor = db.query(TAIKHOAN, cot, dieuKien, new String[]{tenDangNhap}, null, null, null);
+        Cursor cursor = db.query(TAIKHOAN, cot, dieuKien, new String[]{tenDangNhap},
+                null, null, null);
         boolean tonTai = cursor.getCount() > 0;
         cursor.close();
         db.close();
@@ -82,7 +83,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] cot = {COT_MATKHAU};
         String dieuKien = COT_TEN_DANGNHAP + "=? AND " + COT_MATKHAU + "=?";
-        Cursor cursor = db.query(TAIKHOAN, cot, dieuKien, new String[]{tenDangNhap, matKhau}, null, null, null);
+        Cursor cursor = db.query(TAIKHOAN, cot, dieuKien, new String[]{tenDangNhap, matKhau}, null,
+                null, null);
         boolean dungMatKhau = cursor.getCount() > 0;
         cursor.close();
         db.close();
@@ -92,7 +94,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String layVaiTro(String tenDangNhap) {
         SQLiteDatabase db = this.getReadableDatabase();
         String vaiTro = null;
-        Cursor cursor = db.query(TAIKHOAN, new String[]{COT_VAITRO}, COT_TEN_DANGNHAP + "=?", new String[]{tenDangNhap}, null, null, null);
+        Cursor cursor = db.query(TAIKHOAN, new String[]{COT_VAITRO}, COT_TEN_DANGNHAP + "=?",
+                new String[]{tenDangNhap}, null, null, null);
         if (cursor.moveToFirst()) {
             vaiTro = cursor.getString(cursor.getColumnIndexOrThrow(COT_VAITRO));
         }

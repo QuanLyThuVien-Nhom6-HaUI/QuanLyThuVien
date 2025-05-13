@@ -18,9 +18,10 @@
         android:paddingBottom="8dp">
 
         <ImageView
+            android:id="@+id/icArrowBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_menu" />
+            android:src="@drawable/ic_arrow_back" />
 
         <TextView
             android:layout_width="0dp"
@@ -28,10 +29,11 @@
             android:layout_weight="1"
             android:text="Quản lý thư viện"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:gravity="center" />
 
         <ImageView
+            android:id="@+id/icUser"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_user" />
@@ -59,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="Tìm kiếm"
             android:textSize="13sp"
-            android:layout_marginBottom="8dp" /> <!-- Thay đổi margin để các phần tử không quá sát nhau -->
+            android:layout_marginBottom="8dp" />
 
         <EditText
             android:id="@+id/edt_search"
@@ -70,22 +72,21 @@
             android:paddingHorizontal="8dp" />
     </LinearLayout>
 
-
     <!-- RecyclerView -->
     <ListView
-        android:id="@+id/lv_nguoiDoc"
+        android:id="@+id/listViewNguoiDoc"
         android:layout_width="match_parent"
-        android:layout_height="350dp"/>
+        android:layout_height="250dp"
+        android:layout_weight="1" />
 
     <!-- Add button -->
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btnThemNguoiDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Thêm người đọc"
-        android:layout_marginTop="20dp"
-        android:background="@color/black"
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:textSize="16sp" />
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:textColor="#FFFF"
+        android:backgroundTint="#000000" />
 </LinearLayout>
