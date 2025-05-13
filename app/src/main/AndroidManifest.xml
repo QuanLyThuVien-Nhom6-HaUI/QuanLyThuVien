@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qlthuvien"
         tools:targetApi="31">
-        <activity android:name=".ActivityAdmin" />
-        <activity android:name=".ActivityUser" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".UserActivity" />
+        <activity android:name=".IntroActivity" />
+        <activity android:name=".ui.nguoidoc.NguoiDocActivity" />
+        <activity android:name=".ui.nguoidoc.NguoiDocAddActivity" />
+        <activity android:name=".ui.nguoidoc.NguoiDocDetailActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giới Thiệu Về Ứng Dụng"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ứng dụng Quản Lý Thư Viện được thiết kế để hỗ trợ quản lý sách, người đọc, và các giao dịch mượn trả một cách hiệu quả. \n\n- Phiên bản: 1.0.0\n- Nhà phát triển: Nhóm 6 - HAUI\n- Email hỗ trợ: support@nhom6.haui.edu.vn\n- Ngày phát hành: 13/05/2025"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quay Lại"
+        android:backgroundTint="#CCCCCC"
+        android:textColor="#000000"
+        android:padding="12dp" />
+</LinearLayout>
