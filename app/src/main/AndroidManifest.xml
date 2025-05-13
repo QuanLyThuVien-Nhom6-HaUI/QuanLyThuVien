@@ -21,18 +21,12 @@
         <activity
             android:name=".ThemPhieuMuonActivity"
             android:exported="false" />
-        <activity
-            android:name=".ThemPhieuMuon"
-            android:exported="false" />
+
         <activity
             android:name=".PhieuMuonActivity"
             android:exported="false" />
-        <activity
-            android:name=".utils.PhieuMuonActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
