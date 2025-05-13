@@ -13,6 +13,27 @@
         android:theme="@style/Theme.Qlthuvien"
         tools:targetApi="31">
         <activity
+            android:name=".ChiTietPhieuMuonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".item_sach_chi_tiet"
+            android:exported="false" />
+        <activity
+            android:name=".ThemPhieuMuonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ThemPhieuMuon"
+            android:exported="false" />
+        <activity
+            android:name=".PhieuMuonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".utils.PhieuMuonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
