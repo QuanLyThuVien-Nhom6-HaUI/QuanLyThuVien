@@ -12,17 +12,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qlthuvien"
         tools:targetApi="31">
+
         <activity android:name=".ActivityAdmin" />
         <activity android:name=".ActivityUser" />
+        <!-- Launcher -->
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Danh sách Nhân viên -->
+        <activity
+            android:name=".ui.nhanvien.NhanVienActivity"
+            android:exported="false" />
+
+        <!-- Thêm Nhân viên -->
+        <activity
+            android:name=".ui.nhanvien.NhanVienAddActivity"
+            android:exported="false" />
+
+        <!-- Chi tiết / Sửa / Xóa Nhân viên -->
+        <activity
+            android:name=".ui.nhanvien.NhanVienDetailActivity"
+            android:exported="false" />
+
+        <!-- Thống kê -->
+        <activity
+            android:name=".ui.thongke.ThongKeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

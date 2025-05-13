@@ -1,6 +1,8 @@
 package haui.nhom6.qlthuvien.model;
 
-public class NhanVien {
+import java.io.Serializable;
+
+public class NhanVien implements Serializable {
     private String maNhanVien;
     private String tenNhanVien;
     private String ngaySinh;

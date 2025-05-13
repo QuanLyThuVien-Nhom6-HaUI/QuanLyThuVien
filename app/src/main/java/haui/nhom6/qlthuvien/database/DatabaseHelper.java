@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import haui.nhom6.qlthuvien.model.NhanVien;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "QLThuVien.db";
     private static final int DATABASE_VERSION = 1;
@@ -64,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Xử lý nâng cấp nếu cần
     }
 
+
     public boolean kiemTraTenDangNhap(String tenDangNhap) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] cot = {COT_TEN_DANGNHAP};
@@ -97,4 +100,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return vaiTro;
     }
+
 }
