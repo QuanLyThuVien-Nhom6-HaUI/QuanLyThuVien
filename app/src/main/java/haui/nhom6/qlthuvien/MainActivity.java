@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import haui.nhom6.qlthuvien.database.DatabaseHelper;
+import haui.nhom6.qlthuvien.utils.FeedbackActivity;
 
 public class MainActivity extends AppCompatActivity {
     private boolean isPasswordVisible = false;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        // Apply window insets for edge-to-edge layout
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dbHelper = new DatabaseHelper(this);
+
+        // UI elements
         EditText usernameEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.loginButton);
@@ -41,13 +46,16 @@ public class MainActivity extends AppCompatActivity {
         ImageButton smsButton = findViewById(R.id.smsButton);
         ImageButton introButton = findViewById(R.id.introButton);
 
+        // Login button click listener
         loginButton.setOnClickListener(v -> {
             String tenDangNhap = usernameEditText.getText().toString().trim();
             String matKhau = passwordEditText.getText().toString().trim();
 
+            // Check if fields are empty
             if (tenDangNhap.isEmpty() || matKhau.isEmpty()) {
                 Toast.makeText(this, "Vui lòng nhập cả tên đăng nhập và mật khẩu", Toast.LENGTH_SHORT).show();
             } else {
+                // Check if username exists
                 if (!dbHelper.kiemTraTenDangNhap(tenDangNhap)) {
                     Toast.makeText(this, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
                 } else if (!dbHelper.kiemTraMatKhau(tenDangNhap, matKhau)) {
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     String vaiTro = dbHelper.layVaiTro(tenDangNhap);
                     Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    // Redirect based on role
                     if ("QuanLy".equalsIgnoreCase(vaiTro)) {
                         startActivity(new Intent(MainActivity.this, AdminActivity.class));
                     } else {
@@ -64,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        exitButton.setOnClickListener(v -> {
-            finish();
-        });
+        // Exit button click listener
+        exitButton.setOnClickListener(v -> finish());
 
+        // Toggle password visibility
         togglePasswordButton.setOnClickListener(v -> {
             isPasswordVisible = !isPasswordVisible;
             if (isPasswordVisible) {
@@ -80,18 +89,18 @@ public class MainActivity extends AppCompatActivity {
             passwordEditText.setSelection(passwordEditText.getText().length());
         });
 
+        // SMS button click listener
+        // Feedback button click listener
         smsButton.setOnClickListener(v -> {
-            Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
-            smsIntent.setData(Uri.parse("smsto:" + "0123456789"));
-            smsIntent.putExtra("sms_body", "Xin chào, tôi cần hỗ trợ đăng nhập vào ứng dụng Quản Lý Thư Viện.");
-            if (smsIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(smsIntent);
-            } else {
-                Log.d("MainActivity", "No SMS app found for Intent: " + smsIntent.toString());
-                Toast.makeText(this, "Không tìm thấy ứng dụng nhắn tin. Vui lòng cài đặt ứng dụng nhắn tin.", Toast.LENGTH_SHORT).show();
-            }
+            // Chuyển đến trang gửi phản hồi
+            Intent feedbackIntent = new Intent(MainActivity.this, FeedbackActivity.class);
+            startActivity(feedbackIntent);
+
+            Log.d("MainActivity", "Feedback form opened.");
         });
 
+
+        // Intro button click listener
         introButton.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, IntroActivity.class));
         });
@@ -100,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Close database connection when activity is destroyed
         if (dbHelper != null) {
             dbHelper.close();
         }

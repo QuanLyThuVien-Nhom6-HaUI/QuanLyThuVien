@@ -8,7 +8,29 @@
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quản lý nhân viên"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="16dp"
+            />
+        <ImageView
+            android:id="@+id/icArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Quay lại" />
 
+        <ImageView
+            android:id="@+id/icUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user"
+            android:contentDescription="Đăng xuất"
+            android:layout_gravity="end" />
         <EditText
             android:id="@+id/edtTenNhanVien"
             android:hint="Tên nhân viên"

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="haui.nhom6.qlthuvien">
+
+    <!-- Quyền gửi tin nhắn và gọi điện -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +22,7 @@
         android:theme="@style/Theme.Qlthuvien"
         tools:targetApi="31">
 
-
-        <activity android:name=".AdminActivity" />
-        <activity android:name=".UserActivity" />
-        <activity android:name=".IntroActivity" />
-        <activity android:name=".ui.nguoidoc.NguoiDocActivity" />
-        <activity android:name=".ui.nguoidoc.NguoiDocAddActivity" />
-        <activity android:name=".ui.nguoidoc.NguoiDocDetailActivity" />
+        <!-- MainActivity là activity chính -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -29,25 +32,22 @@
             </intent-filter>
         </activity>
 
+        <!-- Các activity khác trong ứng dụng -->
+        <activity android:name=".AdminActivity" android:exported="false" />
+        <activity android:name=".UserActivity" android:exported="false" />
+        <activity android:name=".IntroActivity" android:exported="false" />
+        <activity android:name=".ui.nguoidoc.NguoiDocActivity" android:exported="false" />
+        <activity android:name=".ui.nguoidoc.NguoiDocAddActivity" android:exported="false" />
+        <activity android:name=".ui.nguoidoc.NguoiDocDetailActivity" android:exported="false" />
+        <activity android:name=".utils.FeedbackActivity" android:exported="false"/>
+
         <!-- Danh sách Nhân viên -->
-        <activity
-            android:name=".ui.nhanvien.NhanVienActivity"
-            android:exported="false" />
-
-        <!-- Thêm Nhân viên -->
-        <activity
-            android:name=".ui.nhanvien.NhanVienAddActivity"
-            android:exported="false" />
-
-        <!-- Chi tiết / Sửa / Xóa Nhân viên -->
-        <activity
-            android:name=".ui.nhanvien.NhanVienDetailActivity"
-            android:exported="false" />
+        <activity android:name=".ui.nhanvien.NhanVienActivity" android:exported="false" />
+        <activity android:name=".ui.nhanvien.NhanVienAddActivity" android:exported="false" />
+        <activity android:name=".ui.nhanvien.NhanVienDetailActivity" android:exported="false" />
 
         <!-- Thống kê -->
-        <activity
-            android:name=".ui.thongke.ThongKeActivity"
-            android:exported="false" />
-    </application>
+        <activity android:name=".ui.thongke.ThongKeActivity" android:exported="false" />
 
+    </application>
 </manifest>

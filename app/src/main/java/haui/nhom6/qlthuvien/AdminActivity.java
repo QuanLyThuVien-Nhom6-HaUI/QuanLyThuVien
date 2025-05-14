@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
+import haui.nhom6.qlthuvien.ui.nhanvien.NhanVienActivity;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -28,10 +29,10 @@ public class AdminActivity extends AppCompatActivity {
         icUser = findViewById(R.id.icUser);
 
         // Xử lý sự kiện nhấn nút Quản lý nhân viên
-//        btnNhanVien.setOnClickListener(v -> {
-//            Intent intent = new Intent(AdminActivity.this, NhanVienActivity.class);
-//            startActivity(intent);
-//        });
+        btnNhanVien.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, NhanVienActivity.class);
+            startActivity(intent);
+        });
 
         // Xử lý sự kiện nhấn nút Quản lý người đọc
         btnNguoiDoc.setOnClickListener(v -> {

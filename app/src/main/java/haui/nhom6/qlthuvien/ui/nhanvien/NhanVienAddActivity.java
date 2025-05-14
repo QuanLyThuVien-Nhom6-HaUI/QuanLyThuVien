@@ -1,21 +1,29 @@
 package haui.nhom6.qlthuvien.ui.nhanvien;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
+import haui.nhom6.qlthuvien.AdminActivity;
+import haui.nhom6.qlthuvien.MainActivity;
 import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.database.NhanVienDAO;
 import haui.nhom6.qlthuvien.model.NhanVien;
 
+
 public class NhanVienAddActivity extends AppCompatActivity {
+
     EditText edtTen, edtNgaySinh, edtQueQuan, edtSDT;
     Button btnThem;
+    ImageView icArrowBack, icUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +35,19 @@ public class NhanVienAddActivity extends AppCompatActivity {
         edtQueQuan = findViewById(R.id.edtQueQuan);
         edtSDT = findViewById(R.id.edtSoDienThoai);
         btnThem = findViewById(R.id.btnThem);
+        icArrowBack = findViewById(R.id.icArrowBack);
+        icUser = findViewById(R.id.icUser);
 
         edtNgaySinh.setOnClickListener(v -> showDatePickerDialog(edtNgaySinh));
+
+        icArrowBack.setOnClickListener(v -> finish());
+
+        icUser.setOnClickListener(v -> {
+            Intent intent = new Intent(NhanVienAddActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
 
         btnThem.setOnClickListener(v -> {
             String ten = edtTen.getText().toString().trim();

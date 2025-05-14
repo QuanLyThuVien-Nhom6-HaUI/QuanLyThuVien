@@ -4,10 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Chừa khoảng trống để sau thêm menu -->
-    <View
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="56dp" />
+        android:layout_height="wrap_content"
+        android:text="Quản lý thư viên "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/icArrowBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Quay lại" />
+
+    <ImageView
+        android:id="@+id/icUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_user"
+        android:contentDescription="Đăng xuất"
+        android:layout_gravity="end" />
 
     <TextView
         android:text="Thông tin nhân viên"

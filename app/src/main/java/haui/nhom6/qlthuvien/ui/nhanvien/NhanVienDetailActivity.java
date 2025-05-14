@@ -1,11 +1,11 @@
 package haui.nhom6.qlthuvien.ui.nhanvien;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -14,13 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 import java.util.List;
 
+import haui.nhom6.qlthuvien.MainActivity;
 import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.model.NhanVien;
+
 
 public class NhanVienDetailActivity extends AppCompatActivity implements NhanVienContract.View {
 
     private EditText edtTenNV, edtNgaySinhNV, edtQueQuanNV, edtSDTNV;
     private Button btnSua, btnXoa;
+    private ImageView icArrowBack, icUser;
     private NhanVienPresenter presenter;
     private NhanVien nhanVien;
 
@@ -35,11 +38,24 @@ public class NhanVienDetailActivity extends AppCompatActivity implements NhanVie
         edtSDTNV = findViewById(R.id.edtSDTNV);
         btnSua = findViewById(R.id.btnSua);
         btnXoa = findViewById(R.id.btnXoa);
+        icArrowBack = findViewById(R.id.icArrowBack);
+        icUser = findViewById(R.id.icUser);
 
         presenter = new NhanVienPresenter(this, this);
 
         nhanVien = (NhanVien) getIntent().getSerializableExtra("nhanvien");
+
         edtNgaySinhNV.setOnClickListener(v -> showDatePickerDialog(edtNgaySinhNV));
+
+        icArrowBack.setOnClickListener(v -> finish());
+
+        icUser.setOnClickListener(v -> {
+            Intent intent = new Intent(NhanVienDetailActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
+
         if (nhanVien != null) {
             edtTenNV.setText(nhanVien.getTenNhanVien());
             edtNgaySinhNV.setText(nhanVien.getNgaySinh());
@@ -78,7 +94,6 @@ public class NhanVienDetailActivity extends AppCompatActivity implements NhanVie
                 return;
             }
 
-            // Gán lại dữ liệu sau khi kiểm tra hợp lệ
             nhanVien.setTenNhanVien(ten);
             nhanVien.setNgaySinh(ngaySinh);
             nhanVien.setQueQuan(queQuan);
@@ -97,6 +112,7 @@ public class NhanVienDetailActivity extends AppCompatActivity implements NhanVie
                     .show();
         });
     }
+
     private void showDatePickerDialog(EditText editText) {
         Calendar calendar = Calendar.getInstance();
 
@@ -112,6 +128,7 @@ public class NhanVienDetailActivity extends AppCompatActivity implements NhanVie
 
         datePickerDialog.show();
     }
+
     @Override
     public void showNhanVienList(List<NhanVien> list) {
         // Không cần xử lý trong màn chi tiết
