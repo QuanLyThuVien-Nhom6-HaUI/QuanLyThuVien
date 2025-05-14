@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
 import haui.nhom6.qlthuvien.ui.nhanvien.NhanVienActivity;
+import haui.nhom6.qlthuvien.ui.thongke.ThongKeActivity;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -53,10 +54,10 @@ public class AdminActivity extends AppCompatActivity {
 //        });
 
         // Xử lý sự kiện nhấn nút Thống kê
-//        btnThongKe.setOnClickListener(v -> {
-//            Intent intent = new Intent(AdminActivity.this, ThongKeActivity.class);
-//            startActivity(intent);
-//        });
+        btnThongKe.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, ThongKeActivity.class);
+            startActivity(intent);
+        });
 
         // Xử lý logout khi nhấn ic_user
         icUser.setOnClickListener(v -> {

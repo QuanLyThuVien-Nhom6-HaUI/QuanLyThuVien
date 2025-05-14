@@ -9,14 +9,37 @@
     <!-- Thanh công cụ với gradient -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
+        android:padding="16dp"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Thống kê thư viện"
-            app:titleTextColor="#2C3E50" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/icArrowBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Thống kê"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/icUser"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user" />
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="4dp">
+                    android:padding="8dp">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="110dp"
@@ -83,7 +106,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="110dp"
                         android:layout_height="120dp"
-                        android:layout_margin="4dp"
+                        android:layout_margin="8dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="4dp">
 
@@ -119,35 +142,37 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="110dp"
                         android:layout_height="120dp"
-                        android:layout_margin="4dp"
+                        android:layout_margin="8dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="8dp">
+                            android:orientation="vertical"
+                            >
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:src="@drawable/ic_avatar"
                                 app:tint="#2C3E50" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Số độc giả"
-                                android:textSize="12sp"
-                                android:textColor="#2C3E50" />
+                                android:textColor="#2C3E50"
+                                android:textSize="12sp" />
+
                             <TextView
                                 android:id="@+id/tvTotalUser"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="200"
-                                android:textSize="18sp"
                                 android:textColor="#2C3E50"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>

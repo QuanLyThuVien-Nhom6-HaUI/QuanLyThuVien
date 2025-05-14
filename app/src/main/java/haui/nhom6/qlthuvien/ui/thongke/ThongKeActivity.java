@@ -1,7 +1,9 @@
 package haui.nhom6.qlthuvien.ui.thongke;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TableRow;
 import android.widget.TableLayout;
@@ -25,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import haui.nhom6.qlthuvien.AdminActivity;
+import haui.nhom6.qlthuvien.MainActivity;
 import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.database.DatabaseHelper;
 import haui.nhom6.qlthuvien.database.ThongKeDAO;
@@ -34,6 +38,8 @@ public class ThongKeActivity extends AppCompatActivity {
     private ThongKeDAO thongKeDAO;
     private TextView tvTotalBook, tvBookBorrowed, tvTotalUser;
     private TableLayout tableTopBooks;
+    private ImageView icArrowBack;
+    private ImageView icUser;
     private LineChart lineChart; // Thay BarChart bằng LineChart
 
     @Override
@@ -52,6 +58,22 @@ public class ThongKeActivity extends AppCompatActivity {
         tvTotalUser = findViewById(R.id.tvTotalUser);
         tableTopBooks = findViewById(R.id.tableTopBooks); // Đảm bảo ID này có trong XML
         lineChart = findViewById(R.id.lineChart); // Ánh xạ LineChart
+        icArrowBack = findViewById(R.id.icArrowBack);
+        icUser = findViewById(R.id.icUser);
+
+        // Xử lý logout khi nhấn ic_user
+        icUser.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
+
+        icArrowBack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         // Áp dụng padding cho window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
