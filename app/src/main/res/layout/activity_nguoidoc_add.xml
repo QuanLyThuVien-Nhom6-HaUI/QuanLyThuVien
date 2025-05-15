@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/icArrowBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quản lý thư viện"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/icUser"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtMaNguoiDoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã người đọc" />
+
+        <EditText
+            android:id="@+id/edtTenNguoiDoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên người đọc" />
+
+        <EditText
+            android:id="@+id/edtCCCD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CCCD" />
+
+        <EditText
+            android:id="@+id/edtSoDienThoai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số điện thoại" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupGioiTinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/radioNam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nam" />
+
+            <RadioButton
+                android:id="@+id/radioNu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nữ" />
+        </RadioGroup>
+
+
+
+        <EditText
+            android:id="@+id/edtDiaChi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ" />
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm người đọc"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:textColor="#FFFF"
+            android:backgroundTint="#000000" />
+    </LinearLayout>
+</ScrollView>

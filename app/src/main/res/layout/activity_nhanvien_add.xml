@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quản lý nhân viên"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="16dp"
+            />
+        <ImageView
+            android:id="@+id/icArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Quay lại" />
+
+        <ImageView
+            android:id="@+id/icUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user"
+            android:contentDescription="Đăng xuất"
+            android:layout_gravity="end" />
+        <EditText
+            android:id="@+id/edtTenNhanVien"
+            android:hint="Tên nhân viên"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtNgaySinh"
+            android:hint="Ngày sinh (dd/MM/yyyy)"
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtQueQuan"
+            android:hint="Quê quán"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtSoDienThoai"
+            android:hint="SĐT"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnThem"
+            android:text="Thêm"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFF"
+            android:backgroundTint="#000000"/>
+    </LinearLayout>
+</ScrollView>

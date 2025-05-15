@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quản lý thư viên "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/icArrowBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Quay lại" />
+
+    <ImageView
+        android:id="@+id/icUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_user"
+        android:contentDescription="Đăng xuất"
+        android:layout_gravity="end" />
+
+    <TextView
+        android:text="Thông tin nhân viên"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp" />
+
+    <!-- Nội dung scroll được -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <EditText
+                android:id="@+id/edtTenNV"
+                android:hint="Tên nhân viên"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="12dp" />
+
+            <EditText
+                android:id="@+id/edtNgaySinhNV"
+                android:hint="Ngày sinh"
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="12dp"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/edtQueQuanNV"
+                android:hint="Quê quán"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="12dp"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/edtSDTNV"
+                android:hint="Số điện thoại"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="12dp"
+                android:inputType="phone"
+                android:layout_marginTop="8dp" />
+
+            <LinearLayout
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnSua"
+                    android:text="Sửa"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFF"
+                    android:backgroundTint="#000000"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnXoa"
+                    android:text="Xoá"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFF"
+                    android:backgroundTint="#000000"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

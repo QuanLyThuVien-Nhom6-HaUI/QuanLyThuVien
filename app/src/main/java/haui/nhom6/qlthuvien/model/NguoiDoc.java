@@ -1,6 +1,8 @@
 package haui.nhom6.qlthuvien.model;
 
-public class NguoiDoc {
+import java.io.Serializable;
+
+public class NguoiDoc implements Serializable {
     private String maNguoiDoc;
     private String tenNguoiDoc;
     private String cccd;
@@ -9,6 +11,15 @@ public class NguoiDoc {
     private String diaChi;
 
     public NguoiDoc() {}
+
+    public NguoiDoc(String maNguoiDoc, String tenNguoiDoc, String cccd, String soDienThoai, String gioiTinh, String diaChi) {
+        this.maNguoiDoc = maNguoiDoc;
+        this.tenNguoiDoc = tenNguoiDoc;
+        this.cccd = cccd;
+        this.soDienThoai = soDienThoai;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+    }
 
     public String getMaNguoiDoc() { return maNguoiDoc; }
     public void setMaNguoiDoc(String maNguoiDoc) { this.maNguoiDoc = maNguoiDoc; }

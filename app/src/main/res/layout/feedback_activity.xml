@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4F8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gửi phản hồi đến nhà phát triển"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/etFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Nhập phản hồi của bạn tại đây..."
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:background="@android:drawable/edit_text" />
+
+        <Button
+            android:id="@+id/btnSubmitFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gửi phản hồi"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:background="#2196F3" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quay lại"
+            android:layout_marginTop="8dp"
+            android:textColor="#2196F3"
+            android:background="@color/white"
+            android:padding="1dp" />
+    </LinearLayout>
+</ScrollView>

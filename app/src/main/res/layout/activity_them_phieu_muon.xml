@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ThemPhieuMuonActivity">
 
     <TextView
@@ -55,12 +55,50 @@
         android:focusable="false"
         android:clickable="true" />
 
-    <Button
-        android:id="@+id/btnThem"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm phiếu mượn"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center" />
+        android:text="Danh sách sách:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Chọn sách để thêm" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSachDaChon"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Hai nút "Thêm phiếu mượn" và "Đóng" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm phiếu mượn"
+            android:layout_marginEnd="16dp" />
+
+        <Button
+            android:id="@+id/btnDong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đóng"
+            android:backgroundTint="#FF4444" /> <!-- Màu đỏ nhạt để phân biệt -->
+    </LinearLayout>
 
 </LinearLayout>
