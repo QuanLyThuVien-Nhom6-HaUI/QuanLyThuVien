@@ -1,6 +1,7 @@
 package haui.nhom6.qlthuvien;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
@@ -63,12 +64,20 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     String vaiTro = dbHelper.layVaiTro(tenDangNhap);
                     Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    // Redirect based on role
+
+                    // Lưu vai trò vào SharedPreferences
+                    SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("role", vaiTro.toLowerCase()); // Lưu vai trò dưới dạng chữ thường
+                    editor.apply();
+
+                    // Điều hướng dựa trên vai trò
                     if ("QuanLy".equalsIgnoreCase(vaiTro)) {
                         startActivity(new Intent(MainActivity.this, AdminActivity.class));
                     } else {
                         startActivity(new Intent(MainActivity.this, UserActivity.class));
                     }
+                    finish(); // Đóng MainActivity sau khi điều hướng
                 }
             }
         });
@@ -90,15 +99,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // SMS button click listener
-        // Feedback button click listener
         smsButton.setOnClickListener(v -> {
-            // Chuyển đến trang gửi phản hồi
             Intent feedbackIntent = new Intent(MainActivity.this, FeedbackActivity.class);
             startActivity(feedbackIntent);
-
             Log.d("MainActivity", "Feedback form opened.");
         });
-
 
         // Intro button click listener
         introButton.setOnClickListener(v -> {
@@ -109,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Close database connection when activity is destroyed
         if (dbHelper != null) {
             dbHelper.close();
         }

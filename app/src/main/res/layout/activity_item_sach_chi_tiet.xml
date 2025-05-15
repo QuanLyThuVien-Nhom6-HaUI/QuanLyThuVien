@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:id="@+id/main"
-    android:padding="8dp"
+    android:padding="2dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".item_sach_chi_tiet">
-
 
     <ImageView
         android:id="@+id/ivSach"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_book"
         android:contentDescription="Ảnh sách"
         android:scaleType="fitCenter"
-        android:layout_marginRight="12dp" />
+        android:layout_marginEnd="4dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
@@ -33,7 +32,7 @@
             android:text="Tên sách: Sach A"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="1dp" />
 
         <TextView
             android:id="@+id/tvTacGia"
@@ -41,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Tác giả: Tac Gia A"
             android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="1dp" />
 
         <TextView
             android:id="@+id/tvSoLuong"
