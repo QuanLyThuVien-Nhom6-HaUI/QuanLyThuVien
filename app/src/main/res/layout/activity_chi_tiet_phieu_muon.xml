@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:id="@+id/main"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="#FAFAFA"
     tools:context=".ChiTietPhieuMuonActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Chi tiết phiếu mượn"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="24dp" />
+        android:textColor="#1A237E"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:id="@+id/tvMaPhieu"
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         android:text="Mã phiếu: PM001"
         android:textSize="16sp"
-        android:layout_marginBottom="12dp" />
+        android:textColor="#212121"
+        android:layout_marginBottom="6dp" />
 
     <TextView
         android:id="@+id/tvTenNhanVien"
@@ -32,7 +34,8 @@
         android:layout_height="wrap_content"
         android:text="Nhân viên: Nguyen Van A"
         android:textSize="16sp"
-        android:layout_marginBottom="12dp" />
+        android:textColor="#212121"
+        android:layout_marginBottom="6dp" />
 
     <TextView
         android:id="@+id/tvTenNguoiDoc"
@@ -40,7 +43,8 @@
         android:layout_height="wrap_content"
         android:text="Người mượn: Tran Thi B"
         android:textSize="16sp"
-        android:layout_marginBottom="12dp" />
+        android:textColor="#212121"
+        android:layout_marginBottom="6dp" />
 
     <TextView
         android:id="@+id/tvNgayMuon"
@@ -48,7 +52,8 @@
         android:layout_height="wrap_content"
         android:text="Bắt đầu: 01/05/2025"
         android:textSize="16sp"
-        android:layout_marginBottom="12dp" />
+        android:textColor="#212121"
+        android:layout_marginBottom="6dp" />
 
     <TextView
         android:id="@+id/tvHanTra"
@@ -56,7 +61,8 @@
         android:layout_height="wrap_content"
         android:text="Hạn trả: 01/05/2025"
         android:textSize="16sp"
-        android:layout_marginBottom="24dp" />
+        android:textColor="#212121"
+        android:layout_marginBottom="12dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,21 +70,31 @@
         android:text="Danh sách sách mượn:"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+        android:textColor="#37474F"
+        android:layout_marginBottom="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSachChiTiet"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginBottom="16dp" />
+        android:background="#E3F2FD"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:layout_marginBottom="12dp" />
 
     <Button
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đóng"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#D32F2F"
         android:layout_gravity="center"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_marginTop="8dp" />
 
 </LinearLayout>

@@ -1,12 +1,12 @@
 package haui.nhom6.qlthuvien;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
 import haui.nhom6.qlthuvien.ui.nhanvien.NhanVienActivity;
 import haui.nhom6.qlthuvien.ui.thongke.ThongKeActivity;
@@ -61,6 +61,13 @@ public class AdminActivity extends AppCompatActivity {
 
         // Xử lý logout khi nhấn ic_user
         icUser.setOnClickListener(v -> {
+            // Xóa vai trò khỏi SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.remove("role");
+            editor.apply();
+
+            // Chuyển về màn hình đăng nhập
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

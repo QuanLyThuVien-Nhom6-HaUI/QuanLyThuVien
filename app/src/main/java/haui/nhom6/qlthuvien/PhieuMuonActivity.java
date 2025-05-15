@@ -1,6 +1,7 @@
 package haui.nhom6.qlthuvien;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -45,9 +46,18 @@ public class PhieuMuonActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PhieuMuonActivity.this, AdminActivity.class);
+                // Lấy vai trò từ SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                String role = prefs.getString("role", "nhanvien"); // Mặc định là nhanvien nếu không có
+
+                Intent intent;
+                if (role.equals("quanly")) {
+                    intent = new Intent(PhieuMuonActivity.this, AdminActivity.class);
+                } else {
+                    intent = new Intent(PhieuMuonActivity.this, UserActivity.class);
+                }
                 startActivity(intent);
-                finish();
+                finish(); // Đóng PhieuMuonActivity
             }
         });
     }

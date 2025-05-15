@@ -1,6 +1,7 @@
 package haui.nhom6.qlthuvien;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +26,13 @@ public class UserActivity extends AppCompatActivity {
         icUser = findViewById(R.id.icUser);
 
         icUser.setOnClickListener(v -> {
+            // Xóa vai trò khỏi SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.remove("role");
+            editor.apply();
+
+            // Chuyển về màn hình đăng nhập
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

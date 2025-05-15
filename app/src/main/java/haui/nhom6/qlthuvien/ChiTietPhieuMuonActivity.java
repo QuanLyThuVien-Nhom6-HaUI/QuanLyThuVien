@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,6 +110,12 @@ public class ChiTietPhieuMuonActivity extends AppCompatActivity {
         sachChiTietAdapter = new SachChiTietAdapter(sachChiTietList);
         rvSachChiTiet.setLayoutManager(new LinearLayoutManager(this));
         rvSachChiTiet.setAdapter(sachChiTietAdapter);
+
+        // Thêm DividerItemDecoration để kiểm soát khoảng cách giữa các item
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        // Tạo drawable cho divider (nếu chưa có, thêm file res/drawable/divider.xml)
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider));
+        rvSachChiTiet.addItemDecoration(dividerItemDecoration);
 
         // Thêm sự kiện cho nút đóng
         btnClose.setOnClickListener(v -> finish());

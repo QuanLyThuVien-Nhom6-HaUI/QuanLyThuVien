@@ -7,35 +7,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="#FAFAFA"
     tools:context=".ThemPhieuMuonActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thêm phiếu mượn"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#3F51B5" />
 
     <EditText
         android:id="@+id/etMaPhieu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mã phiếu"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#3F51B5" />
 
     <Spinner
         android:id="@+id/spinnerNhanVien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Chọn nhân viên" />
+        android:layout_marginTop="16dp" />
 
     <Spinner
         android:id="@+id/spinnerNguoiDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Chọn độc giả" />
+        android:layout_marginTop="16dp" />
 
     <EditText
         android:id="@+id/etNgayMuon"
@@ -44,7 +45,8 @@
         android:hint="Ngày mượn (yyyy-MM-dd)"
         android:layout_marginTop="16dp"
         android:focusable="false"
-        android:clickable="true" />
+        android:clickable="true"
+        android:backgroundTint="#3F51B5" />
 
     <EditText
         android:id="@+id/etHanTraSach"
@@ -53,7 +55,8 @@
         android:hint="Hạn trả (yyyy-MM-dd)"
         android:layout_marginTop="16dp"
         android:focusable="false"
-        android:clickable="true" />
+        android:clickable="true"
+        android:backgroundTint="#3F51B5" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,14 +65,14 @@
         android:text="Danh sách sách:"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:textColor="#000000"
         android:layout_marginBottom="8dp" />
 
     <Spinner
         android:id="@+id/spinnerSach"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:hint="Chọn sách để thêm" />
+        android:layout_marginBottom="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSachDaChon"
@@ -78,7 +81,6 @@
         android:layout_weight="1"
         android:layout_marginBottom="16dp" />
 
-    <!-- Hai nút "Thêm phiếu mượn" và "Đóng" -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,17 +90,23 @@
 
         <Button
             android:id="@+id/btnThem"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Thêm phiếu mượn"
-            android:layout_marginEnd="16dp" />
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btnDong"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Đóng"
-            android:backgroundTint="#FF4444" /> <!-- Màu đỏ nhạt để phân biệt -->
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#F44336"
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
 </LinearLayout>
