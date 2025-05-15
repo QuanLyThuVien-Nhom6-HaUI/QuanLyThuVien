@@ -37,6 +37,21 @@
             android:name=".ui.nhanvien.NhanVienDetailActivity"
             android:exported="false" />
 
+        <!-- Danh sách Sách -->
+        <activity
+            android:name=".ui.sach.SachActivity"
+            android:exported="false" />
+
+        <!-- Thêm Sách -->
+        <activity
+            android:name=".ui.sach.SachAddActivity"
+            android:exported="false" />
+
+        <!-- Chi tiết / Sửa / Xóa Sách -->
+        <activity
+            android:name=".ui.sach.SachDetailActivity"
+            android:exported="false" />
+
         <!-- Thống kê -->
         <activity
             android:name=".ui.thongke.ThongKeActivity"

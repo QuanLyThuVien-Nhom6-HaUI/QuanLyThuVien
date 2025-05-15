@@ -1,6 +1,8 @@
 package haui.nhom6.qlthuvien.model;
 
-public class Sach {
+import java.io.Serializable;
+
+public class Sach implements Serializable {
     private String maSach;
     private String tenSach;
     private String tacGia;
