@@ -25,4 +25,9 @@ public class NhanVien implements Serializable {
 
     public String getSoDienThoai() { return soDienThoai; }
     public void setSoDienThoai(String soDienThoai) { this.soDienThoai = soDienThoai; }
+
+    @Override
+    public String toString() {
+        return tenNhanVien + " (" + maNhanVien + ")";
+    }
 }

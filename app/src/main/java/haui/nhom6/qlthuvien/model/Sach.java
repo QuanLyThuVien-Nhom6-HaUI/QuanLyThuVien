@@ -1,6 +1,8 @@
 package haui.nhom6.qlthuvien.model;
 
-public class Sach {
+import java.io.Serializable;
+
+public class Sach implements Serializable {
     private String maSach;
     private String tenSach;
     private String tacGia;
@@ -39,4 +41,9 @@ public class Sach {
 
     public int getSoLuong() { return soLuong; }
     public void setSoLuong(int soLuong) { this.soLuong = soLuong; }
+
+    @Override
+    public String toString() {
+        return tenSach + " - " + tacGia;
+    }
 }

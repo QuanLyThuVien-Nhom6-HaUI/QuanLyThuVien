@@ -38,4 +38,9 @@ public class NguoiDoc implements Serializable {
 
     public String getDiaChi() { return diaChi; }
     public void setDiaChi(String diaChi) { this.diaChi = diaChi; }
+
+    @Override
+    public String toString() {
+        return tenNguoiDoc + " (" + maNguoiDoc + ")";
+    }
 }

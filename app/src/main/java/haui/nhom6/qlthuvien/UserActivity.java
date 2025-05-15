@@ -11,7 +11,7 @@ import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
 
 public class UserActivity extends AppCompatActivity {
 
-    private Button btnNhanVien, btnNguoiDoc;
+    private Button btnNhanVien, btnNguoiDoc, btnPhieuMuon1;
     private ImageView icUser;
 
     @Override
@@ -21,6 +21,7 @@ public class UserActivity extends AppCompatActivity {
 
         btnNhanVien = findViewById(R.id.btnSach); // Giả sử dùng chung button "Quản lý sách" cho nhân viên
         btnNguoiDoc = findViewById(R.id.btnNguoiDoc);
+        btnPhieuMuon1 = findViewById(R.id.btnPhieuMuon1);
         icUser = findViewById(R.id.icUser);
 
         icUser.setOnClickListener(v -> {
@@ -35,6 +36,10 @@ public class UserActivity extends AppCompatActivity {
 
         btnNguoiDoc.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, NguoiDocActivity.class);
+            startActivity(intent);
+        });
+        btnPhieuMuon1.setOnClickListener(v ->{
+            Intent intent = new Intent(UserActivity.this, PhieuMuonActivity.class);
             startActivity(intent);
         });
     }

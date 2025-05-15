@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ThemPhieuMuonActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm phiếu mượn"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etMaPhieu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mã phiếu"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerNhanVien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Chọn nhân viên" />
+
+    <Spinner
+        android:id="@+id/spinnerNguoiDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Chọn độc giả" />
+
+    <EditText
+        android:id="@+id/etNgayMuon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày mượn (yyyy-MM-dd)"
+        android:layout_marginTop="16dp"
+        android:focusable="false"
+        android:clickable="true" />
+
+    <EditText
+        android:id="@+id/etHanTraSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hạn trả (yyyy-MM-dd)"
+        android:layout_marginTop="16dp"
+        android:focusable="false"
+        android:clickable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Danh sách sách:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Chọn sách để thêm" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSachDaChon"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Hai nút "Thêm phiếu mượn" và "Đóng" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm phiếu mượn"
+            android:layout_marginEnd="16dp" />
+
+        <Button
+            android:id="@+id/btnDong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đóng"
+            android:backgroundTint="#FF4444" /> <!-- Màu đỏ nhạt để phân biệt -->
+    </LinearLayout>
+
+</LinearLayout>

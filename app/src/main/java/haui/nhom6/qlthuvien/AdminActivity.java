@@ -48,10 +48,10 @@ public class AdminActivity extends AppCompatActivity {
 //        });
 
         // Xử lý sự kiện nhấn nút Quản lý phiếu mượn
-//        btnPhieuMuon.setOnClickListener(v -> {
-//            Intent intent = new Intent(AdminActivity.this, PhieuMuonActivity.class);
-//            startActivity(intent);
-//        });
+        btnPhieuMuon.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, PhieuMuonActivity.class);
+            startActivity(intent);
+        });
 
         // Xử lý sự kiện nhấn nút Thống kê
         btnThongKe.setOnClickListener(v -> {
