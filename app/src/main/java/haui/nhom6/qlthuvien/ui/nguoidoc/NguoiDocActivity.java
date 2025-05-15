@@ -1,9 +1,11 @@
 package haui.nhom6.qlthuvien.ui.nguoidoc;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,10 +21,12 @@ import java.util.List;
 import haui.nhom6.qlthuvien.AdminActivity;
 import haui.nhom6.qlthuvien.MainActivity;
 import haui.nhom6.qlthuvien.R;
+import haui.nhom6.qlthuvien.UserActivity;
 import haui.nhom6.qlthuvien.adapter.NguoiDocAdapter;
 import haui.nhom6.qlthuvien.model.NguoiDoc;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocContract;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocPresenter;
+import haui.nhom6.qlthuvien.ui.sach.SachActivity;
 
 public class NguoiDocActivity extends AppCompatActivity implements NguoiDocContract.View {
 
@@ -60,10 +64,22 @@ public class NguoiDocActivity extends AppCompatActivity implements NguoiDocContr
         });
 
         // Xử lý back navigation
-        icArrowBack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AdminActivity.class);
-            startActivity(intent);
-            finish();
+        icArrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Lấy vai trò từ SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                String role = prefs.getString("role", "nhanvien"); // Mặc định là nhanvien nếu không có
+
+                Intent intent;
+                if (role.equals("quanly")) {
+                    intent = new Intent(NguoiDocActivity.this, AdminActivity.class);
+                } else {
+                    intent = new Intent(NguoiDocActivity.this, UserActivity.class);
+                }
+                startActivity(intent);
+                finish();
+            }
         });
         icUser = findViewById(R.id.icUser);
         // Xử lý logout khi nhấn ic_user

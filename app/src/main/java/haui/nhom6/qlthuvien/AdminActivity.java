@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
 import haui.nhom6.qlthuvien.ui.nhanvien.NhanVienActivity;
+import haui.nhom6.qlthuvien.ui.sach.SachActivity;
 import haui.nhom6.qlthuvien.ui.thongke.ThongKeActivity;
 
 public class AdminActivity extends AppCompatActivity {
@@ -42,10 +43,10 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         // Xử lý sự kiện nhấn nút Quản lý sách
-//        btnSach.setOnClickListener(v -> {
-//            Intent intent = new Intent(AdminActivity.this, SachActivity.class);
-//            startActivity(intent);
-//        });
+        btnSach.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, SachActivity.class);
+            startActivity(intent);
+        });
 
         // Xử lý sự kiện nhấn nút Quản lý phiếu mượn
         btnPhieuMuon.setOnClickListener(v -> {

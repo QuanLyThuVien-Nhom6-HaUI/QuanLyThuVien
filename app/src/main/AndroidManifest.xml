@@ -78,6 +78,18 @@
         <activity
             android:name=".ui.thongke.ThongKeActivity"
             android:exported="false" />
+
+        <!-- Quản lý sách -->
+        <activity
+            android:name=".ui.sach.SachActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sach.SachAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sach.SachDetailActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

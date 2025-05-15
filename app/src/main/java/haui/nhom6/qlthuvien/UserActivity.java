@@ -9,10 +9,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
+import haui.nhom6.qlthuvien.ui.sach.SachActivity;
 
 public class UserActivity extends AppCompatActivity {
 
-    private Button btnNhanVien, btnNguoiDoc, btnPhieuMuon1;
+    private Button btnNhanVien, btnNguoiDoc, btnPhieuMuon1, btnSach;
     private ImageView icUser;
 
     @Override
@@ -24,6 +25,7 @@ public class UserActivity extends AppCompatActivity {
         btnNguoiDoc = findViewById(R.id.btnNguoiDoc);
         btnPhieuMuon1 = findViewById(R.id.btnPhieuMuon1);
         icUser = findViewById(R.id.icUser);
+        btnSach = findViewById(R.id.btnSach);
 
         icUser.setOnClickListener(v -> {
             // Xóa vai trò khỏi SharedPreferences
@@ -42,10 +44,17 @@ public class UserActivity extends AppCompatActivity {
         btnNhanVien.setOnClickListener(v -> {
         });
 
+        btnSach.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, SachActivity.class);
+            startActivity(intent);
+        });
+
+
         btnNguoiDoc.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, NguoiDocActivity.class);
             startActivity(intent);
         });
+
         btnPhieuMuon1.setOnClickListener(v ->{
             Intent intent = new Intent(UserActivity.this, PhieuMuonActivity.class);
             startActivity(intent);
