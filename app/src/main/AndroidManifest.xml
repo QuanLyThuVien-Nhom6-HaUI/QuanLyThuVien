@@ -25,16 +25,16 @@
             android:exported="false" />
         <!-- MainActivity là activity chính -->
         <activity
-            android:name=".ChiTietPhieuMuonActivity"
+            android:name=".ui.phieumuon.ChiTietPhieuMuonActivity"
             android:exported="false" />
         <activity
-            android:name=".item_sach_chi_tiet"
+            android:name=".ui.phieumuon.item_sach_chi_tiet"
             android:exported="false" />
         <activity
-            android:name=".ThemPhieuMuonActivity"
+            android:name=".ui.phieumuon.ThemPhieuMuonActivity"
             android:exported="false" />
         <activity
-            android:name=".PhieuMuonActivity"
+            android:name=".ui.phieumuon.PhieuMuonActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

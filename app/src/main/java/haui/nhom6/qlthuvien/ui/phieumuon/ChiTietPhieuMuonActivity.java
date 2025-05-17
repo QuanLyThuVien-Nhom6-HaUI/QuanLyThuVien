@@ -1,9 +1,8 @@
-package haui.nhom6.qlthuvien;
+package haui.nhom6.qlthuvien.ui.phieumuon;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.adapter.SachChiTietAdapter;
 import haui.nhom6.qlthuvien.database.DatabaseHelper;
 import haui.nhom6.qlthuvien.model.PhieuMuon;
