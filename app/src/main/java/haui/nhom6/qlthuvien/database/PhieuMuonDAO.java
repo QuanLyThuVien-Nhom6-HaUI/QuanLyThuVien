@@ -31,7 +31,6 @@ public class PhieuMuonDAO {
                     "LEFT JOIN NhanVien nv ON pm.maNhanVien = nv.maNhanVien " +
                     "LEFT JOIN NguoiDoc nd ON pm.maNguoiDoc = nd.maNguoiDoc";
             cursor = db.rawQuery(selectQuery, null);
-
             if (cursor.moveToFirst()) {
                 do {
                     PhieuMuon phieuMuon = new PhieuMuon();
@@ -67,7 +66,6 @@ public class PhieuMuonDAO {
         }
         return phieuMuonList;
     }
-
     public long insertPhieuMuon(PhieuMuon phieuMuon) {
         db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -76,7 +74,6 @@ public class PhieuMuonDAO {
         values.put("maNguoiDoc", phieuMuon.getMaNguoiDoc());
         values.put("ngayMuon", new SimpleDateFormat("yyyy-MM-dd").format(phieuMuon.getNgayMuon()));
         values.put("hanTraSach", new SimpleDateFormat("yyyy-MM-dd").format(phieuMuon.getHanTraSach()));
-
         long result = db.insert("PhieuMuonTra", null, values);
         db.close();
         return result;

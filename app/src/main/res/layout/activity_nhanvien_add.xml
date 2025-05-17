@@ -8,54 +8,73 @@
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+
+        <!-- Tiêu đề nằm ngang -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quản lý nhân viên"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:padding="16dp"
-            />
-        <ImageView
-            android:id="@+id/icArrowBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Quay lại" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
 
-        <ImageView
-            android:id="@+id/icUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_user"
-            android:contentDescription="Đăng xuất"
-            android:layout_gravity="end" />
+            <ImageView
+                android:id="@+id/icArrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="Quay lại"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Quản lý nhân viên"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="8dp" />
+
+            <ImageView
+                android:id="@+id/icUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_user"
+                android:contentDescription="Đăng xuất"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtMaNhanVien"
+            android:hint="Mã nhân viên"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/edtTenNhanVien"
             android:hint="Tên nhân viên"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/edtNgaySinh"
             android:hint="Ngày sinh (dd/MM/yyyy)"
             android:layout_width="match_parent"
-            android:focusable="false"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:focusable="false" />
 
         <EditText
             android:id="@+id/edtQueQuan"
             android:hint="Quê quán"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/edtSoDienThoai"
             android:hint="SĐT"
             android:inputType="phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnThem"
@@ -63,7 +82,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFFF"
-            android:backgroundTint="#000000"/>
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#000000" />
     </LinearLayout>
 </ScrollView>

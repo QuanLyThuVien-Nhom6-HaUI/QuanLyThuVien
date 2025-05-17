@@ -140,7 +140,7 @@
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:gravity="center"
-                        android:text="SMS hỗ trợ" />
+                        android:text="Gửi phản hồi" />
                 </LinearLayout>
 
                 <LinearLayout

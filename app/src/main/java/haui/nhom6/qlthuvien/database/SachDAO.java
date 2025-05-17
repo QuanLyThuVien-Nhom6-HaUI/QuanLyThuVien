@@ -1,5 +1,6 @@
 package haui.nhom6.qlthuvien.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,6 +19,7 @@ public class SachDAO {
         dbHelper = new DatabaseHelper(context);
     }
 
+    @SuppressLint("Range")
     public List<Sach> getAllSach() {
         List<Sach> sachList = new ArrayList<>();
         db = dbHelper.getReadableDatabase();
@@ -44,6 +46,7 @@ public class SachDAO {
         return sachList;
     }
 
+    @SuppressLint("Range")
     public List<Sach> getSachByPage(int offset, int limit) {
         List<Sach> sachList = new ArrayList<>();
         db = dbHelper.getReadableDatabase();
@@ -83,6 +86,7 @@ public class SachDAO {
         return count;
     }
 
+    @SuppressLint("Range")
     public List<Sach> timKiemSach(String tuKhoa) {
         List<Sach> ketQua = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();

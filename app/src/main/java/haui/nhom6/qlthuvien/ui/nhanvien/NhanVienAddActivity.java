@@ -21,7 +21,7 @@ import haui.nhom6.qlthuvien.model.NhanVien;
 
 public class NhanVienAddActivity extends AppCompatActivity {
 
-    EditText edtTen, edtNgaySinh, edtQueQuan, edtSDT;
+    EditText edtTen, edtNgaySinh, edtQueQuan, edtSDT,edtMa;
     Button btnThem;
     ImageView icArrowBack, icUser;
 
@@ -29,7 +29,7 @@ public class NhanVienAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nhanvien_add);
-
+        edtMa=findViewById(R.id.edtMaNhanVien);
         edtTen = findViewById(R.id.edtTenNhanVien);
         edtNgaySinh = findViewById(R.id.edtNgaySinh);
         edtQueQuan = findViewById(R.id.edtQueQuan);
@@ -50,10 +50,20 @@ public class NhanVienAddActivity extends AppCompatActivity {
         });
 
         btnThem.setOnClickListener(v -> {
+            String ma = edtMa.getText().toString().trim();
             String ten = edtTen.getText().toString().trim();
             String ngaySinh = edtNgaySinh.getText().toString().trim();
             String queQuan = edtQueQuan.getText().toString().trim();
             String sdt = edtSDT.getText().toString().trim();
+            if (ma.isEmpty()) {
+                showToast("Mã nhân viên không được để trống");
+                return;
+            }
+            if (ma.length() < 3) {
+                showToast("Mã nhân viên phải có ít nhất 3 ký tự");
+                return;
+            }
+
 
             if (ten.isEmpty()) {
                 showToast("Tên nhân viên không được để trống");
@@ -81,6 +91,7 @@ public class NhanVienAddActivity extends AppCompatActivity {
             }
 
             NhanVien nv = new NhanVien();
+            nv.setMaNhanVien(ma);
             nv.setTenNhanVien(ten);
             nv.setNgaySinh(ngaySinh);
             nv.setQueQuan(queQuan);

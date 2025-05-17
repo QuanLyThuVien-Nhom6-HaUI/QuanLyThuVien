@@ -3,31 +3,47 @@
     android:orientation="vertical" android:padding="16dp">
 
     <!-- Tiêu đề -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Quản lý thư viện"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="16dp" />
 
     <!-- Nút quay lại -->
-    <ImageView
-        android:id="@+id/icArrowBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back"
-        android:contentDescription="Quay lại" />
 
-    <!-- Nút user (đăng xuất) -->
-    <ImageView
-        android:id="@+id/icUser"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_user"
-        android:contentDescription="Đăng xuất"
-        android:layout_gravity="end" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:weightSum="1">
+
+        <!-- Nút quay lại -->
+        <ImageView
+            android:id="@+id/icArrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Quay lại"
+            android:padding="8dp" />
+
+        <!-- Tiêu đề căn giữa -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Quản lý thư viện"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="8dp" />
+
+        <!-- Nút user (đăng xuất) -->
+        <ImageView
+            android:id="@+id/icUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user"
+            android:contentDescription="Đăng xuất"
+            android:padding="8dp" />
+    </LinearLayout>
+
 
     <!-- Nhãn tìm kiếm + ô tìm kiếm nằm cùng hàng -->
     <LinearLayout
