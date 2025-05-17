@@ -7,7 +7,7 @@
     android:padding="2dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".item_sach_chi_tiet">
+    tools:context=".ui.phieumuon.item_sach_chi_tiet">
 
     <ImageView
         android:id="@+id/ivSach"

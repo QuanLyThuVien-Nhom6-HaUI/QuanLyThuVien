@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:orientation="vertical"
     android:background="#FAFAFA"
-    tools:context=".ChiTietPhieuMuonActivity">
+    tools:context=".ui.phieumuon.ChiTietPhieuMuonActivity">
 
     <TextView
         android:layout_width="match_parent"

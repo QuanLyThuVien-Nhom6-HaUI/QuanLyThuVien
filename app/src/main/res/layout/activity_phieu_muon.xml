@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:orientation="vertical"
     android:background="#FAFAFA"
-    tools:context=".PhieuMuonActivity">
+    tools:context=".ui.phieumuon.PhieuMuonActivity">
 
     <!-- Header -->
     <LinearLayout
