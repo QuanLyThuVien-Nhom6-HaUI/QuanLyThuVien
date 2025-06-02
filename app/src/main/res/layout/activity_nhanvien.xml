@@ -1,11 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="16dp">
+    android:orientation="vertical" android:padding="16dp"
+    android:background="@color/white">
 
-    <!-- Tiêu đề -->
-
-    <!-- Nút quay lại -->
-
+    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,16 +12,14 @@
         android:padding="8dp"
         android:weightSum="1">
 
-        <!-- Nút quay lại -->
         <ImageView
             android:id="@+id/icArrowBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_arrow_back"
             android:contentDescription="Quay lại"
             android:padding="8dp" />
 
-        <!-- Tiêu đề căn giữa -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -32,20 +28,19 @@
             android:text="Quản lý thư viện"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textColor="#000000" />
 
-        <!-- Nút user (đăng xuất) -->
         <ImageView
             android:id="@+id/icUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_user"
             android:contentDescription="Đăng xuất"
             android:padding="8dp" />
     </LinearLayout>
 
-
-    <!-- Nhãn tìm kiếm + ô tìm kiếm nằm cùng hàng -->
+    <!-- Search bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,46 +48,85 @@
         android:layout_marginTop="8dp"
         android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tìm kiếm:"
-            android:textSize="16sp"
-            android:layout_marginEnd="8dp" />
-
         <EditText
             android:id="@+id/edt_search"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
+            android:padding="10dp"
             android:hint="Nhập tên nhân viên"
-            android:inputType="text" />
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Tiêu đề danh sách nhân viên -->
+    <!-- Title list -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Danh sách nhân viên"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:textColor="#000000" />
 
-    <!-- Danh sách -->
+    <!-- List -->
     <ListView
         android:id="@+id/listViewNhanVien"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:divider="@color/white"
+        android:dividerHeight="10dp"/>
 
-    <!-- Nút thêm -->
+    <!-- Pagination -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#000000"
+            android:text="Trước"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvPageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="Trang 1/1"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:gravity="center_vertical" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#000000"
+            android:text="Sau"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Add button -->
     <Button
         android:id="@+id/btnThemNhanVien"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="Thêm nhân viên"
         android:textColor="#FFFFFF"
         android:backgroundTint="#000000"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:textSize="18sp" />
 
 </LinearLayout>
