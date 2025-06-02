@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="16dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnBack"
@@ -33,12 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Danh sách phiếu mượn"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#1A237E"
             android:gravity="center" />
 
-        <!-- Duy trì cân đối phải -->
         <View
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -58,7 +57,21 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="16dp" />
+
+    <!-- Ô tìm kiếm -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tìm kiếm theo tên nhân viên hoặc người mượn"
+        android:background="@android:drawable/edit_text"
+        android:backgroundTint="#E0E0E0"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp" />
 
     <!-- Danh sách -->
     <androidx.recyclerview.widget.RecyclerView
@@ -66,6 +79,49 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#E3F2FD"
-        android:padding="8dp" />
+        android:background="#FFFFFF"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
+    <!-- Phân trang -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="12dp">
+
+        <Button
+            android:id="@+id/btnPreviousPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang trước"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tvPageInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang 1"
+            android:textSize="16sp"
+            android:textColor="#37474F"
+            android:layout_marginHorizontal="8dp" />
+
+        <Button
+            android:id="@+id/btnNextPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang sau"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
 </LinearLayout>
