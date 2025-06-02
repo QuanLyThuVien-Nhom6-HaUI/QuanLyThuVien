@@ -62,7 +62,7 @@ public class NguoiDocAddActivity extends AppCompatActivity implements NguoiDocCo
             RadioButton selectedRadioButton = findViewById(selectedId);
             String gioiTinh = selectedRadioButton.getText().toString();
 
-            if (ma.isEmpty() || ten.isEmpty() || cccd.isEmpty() || sdt.isEmpty() || diaChi.isEmpty()) {
+            if (ma.isEmpty() || ten.isEmpty() || cccd.isEmpty() || sdt.isEmpty() || diaChi.isEmpty() || selectedId == -1) {
                 showToast("Vui lòng nhập đầy đủ thông tin");
                 return;
             }
@@ -84,10 +84,7 @@ public class NguoiDocAddActivity extends AppCompatActivity implements NguoiDocCo
                 showToast("CCCD không hợp lệ (Yêu cầu phải có 12 chữ số)");
                 return;
             }
-            if (selectedId == -1) {
-                showToast("Vui lòng chọn giới tính");
-                return;
-            }
+
 
             NguoiDoc nd = new NguoiDoc(ma, ten, cccd, sdt, gioiTinh, diaChi);
             presenter.addNguoiDoc(nd);

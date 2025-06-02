@@ -58,14 +58,16 @@ public class NguoiDocDetailActivity extends AppCompatActivity implements NguoiDo
             edtDiaChi.setText(nguoiDoc.getDiaChi());
             Log.d("GioiTinh", "Giới tính từ DB: " + nguoiDoc.getGioiTinh());
 
-            if ("Nam".equalsIgnoreCase(nguoiDoc.getGioiTinh())) {
+            String gioiTinh = nguoiDoc.getGioiTinh();
+            if ("Nam".equalsIgnoreCase(gioiTinh)) {
                 radioNam.setChecked(true);
-            } else if ("Nu".equalsIgnoreCase(nguoiDoc.getGioiTinh())) {
+            } else if ("Nu".equalsIgnoreCase(gioiTinh) || "Nữ".equalsIgnoreCase(gioiTinh)) {
                 radioNu.setChecked(true);
+            } else {
+                // Không xác định, có thể không chọn gì hoặc chọn mặc định
             }
-            } else if ("Nữ".equalsIgnoreCase(nguoiDoc.getGioiTinh())) {
-                radioNu.setChecked(true);
-            }
+        }
+
          else {
             showToast("Không thể tải thông tin người đọc");
             finish();
