@@ -7,6 +7,18 @@
     android:layout_marginBottom="8dp"
     android:background="?android:attr/selectableItemBackground">
 
+    <!-- Số thứ tự -->
+    <TextView
+        android:id="@+id/tvStt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="STT"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
     <!-- Tên người đọc -->
     <TextView
         android:id="@+id/tvTen"
@@ -30,7 +42,5 @@
         android:textColor="#757575"
         android:maxLines="1"
         android:ellipsize="end" />
-
-
 
 </LinearLayout>

@@ -2,7 +2,6 @@ package haui.nhom6.qlthuvien;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -11,13 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import haui.nhom6.qlthuvien.database.DatabaseHelper;
-import haui.nhom6.qlthuvien.utils.FeedbackActivity;
+import haui.nhom6.qlthuvien.ui.login.FeedbackActivity;
+import haui.nhom6.qlthuvien.ui.login.IntroActivity;
 
 public class MainActivity extends AppCompatActivity {
     private boolean isPasswordVisible = false;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Apply window insets for edge-to-edge layout
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        // UI elements
         EditText usernameEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.loginButton);
@@ -47,16 +46,13 @@ public class MainActivity extends AppCompatActivity {
         ImageButton smsButton = findViewById(R.id.smsButton);
         ImageButton introButton = findViewById(R.id.introButton);
 
-        // Login button click listener
         loginButton.setOnClickListener(v -> {
             String tenDangNhap = usernameEditText.getText().toString().trim();
             String matKhau = passwordEditText.getText().toString().trim();
 
-            // Check if fields are empty
             if (tenDangNhap.isEmpty() || matKhau.isEmpty()) {
                 Toast.makeText(this, "Vui lòng nhập cả tên đăng nhập và mật khẩu", Toast.LENGTH_SHORT).show();
             } else {
-                // Check if username exists
                 if (!dbHelper.kiemTraTenDangNhap(tenDangNhap)) {
                     Toast.makeText(this, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
                 } else if (!dbHelper.kiemTraMatKhau(tenDangNhap, matKhau)) {
@@ -65,27 +61,31 @@ public class MainActivity extends AppCompatActivity {
                     String vaiTro = dbHelper.layVaiTro(tenDangNhap);
                     Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 
-                    // Lưu vai trò vào SharedPreferences
                     SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("role", vaiTro.toLowerCase()); // Lưu vai trò dưới dạng chữ thường
                     editor.apply();
 
-                    // Điều hướng dựa trên vai trò
                     if ("QuanLy".equalsIgnoreCase(vaiTro)) {
                         startActivity(new Intent(MainActivity.this, AdminActivity.class));
                     } else {
                         startActivity(new Intent(MainActivity.this, UserActivity.class));
                     }
-                    finish(); // Đóng MainActivity sau khi điều hướng
+                    finish();
                 }
             }
         });
 
-        // Exit button click listener
-        exitButton.setOnClickListener(v -> finish());
+        exitButton.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Xác nhận thoát")
+                    .setMessage("Bạn có chắc chắn muốn thoát ứng dụng không?")
+                    .setPositiveButton("Có", (dialog, which) -> finish()) // Kết thúc Activity
+                    .setNegativeButton("Không", (dialog, which) -> dialog.dismiss()) // Đóng dialog
+                    .show();
+        });
 
-        // Toggle password visibility
+
         togglePasswordButton.setOnClickListener(v -> {
             isPasswordVisible = !isPasswordVisible;
             if (isPasswordVisible) {
@@ -98,14 +98,14 @@ public class MainActivity extends AppCompatActivity {
             passwordEditText.setSelection(passwordEditText.getText().length());
         });
 
-        // SMS button click listener
+        // SMS button
         smsButton.setOnClickListener(v -> {
             Intent feedbackIntent = new Intent(MainActivity.this, FeedbackActivity.class);
             startActivity(feedbackIntent);
             Log.d("MainActivity", "Feedback form opened.");
         });
 
-        // Intro button click listener
+        // Intro button 
         introButton.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, IntroActivity.class));
         });

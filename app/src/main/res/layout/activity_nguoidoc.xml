@@ -8,7 +8,6 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- Top bar -->
     <LinearLayout
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
@@ -39,7 +38,6 @@
             android:src="@drawable/ic_user" />
     </LinearLayout>
 
-    <!-- Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,36 +54,64 @@
         android:layout_marginTop="12dp"
         android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tìm kiếm"
-            android:textSize="13sp"
-            android:layout_marginBottom="8dp" />
+
 
         <EditText
             android:id="@+id/edt_search"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="30dp"
-            android:hint="Tên người đọc"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:hint="Nhập tên người đọc"
             android:paddingHorizontal="8dp" />
     </LinearLayout>
 
-    <!-- RecyclerView -->
     <ListView
         android:id="@+id/listViewNguoiDoc"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_weight="1" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-    <!-- Add button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#020202"
+            android:text="Trang trước"
+            android:textColor="#FDFDFD"
+            android:enabled="true" />
+
+        <TextView
+            android:id="@+id/tvPageInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang 1/1"
+            android:paddingHorizontal="16dp"/>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="Trang sau"
+            android:textColor="#FDFDFD"
+            android:enabled="true" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnThemNguoiDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Thêm người đọc"
-        android:padding="20dp"
+        android:padding="14dp"
         android:layout_margin="10dp"
         android:textColor="#FFFF"
         android:backgroundTint="#000000" />

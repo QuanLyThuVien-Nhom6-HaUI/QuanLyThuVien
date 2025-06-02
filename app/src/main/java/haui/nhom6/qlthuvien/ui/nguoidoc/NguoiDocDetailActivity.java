@@ -128,7 +128,6 @@ public class NguoiDocDetailActivity extends AppCompatActivity implements NguoiDo
             nguoiDoc.setSoDienThoai(sdt);
             nguoiDoc.setGioiTinh(gioiTinh);
             nguoiDoc.setDiaChi(diaChi);
-
             presenter.updateNguoiDoc(nguoiDoc);
         });
 
@@ -160,6 +159,11 @@ public class NguoiDocDetailActivity extends AppCompatActivity implements NguoiDo
     @Override
     public void onError(String message) {
         showToast(message);
+    }
+
+    @Override
+    public void updatePageInfo(int currentPage, int totalPages) {
+
     }
 
     private void showToast(String message) {

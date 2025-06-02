@@ -1,7 +1,9 @@
-package haui.nhom6.qlthuvien;
+package haui.nhom6.qlthuvien.ui.login;
 import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
+import haui.nhom6.qlthuvien.R;
 
 public class IntroActivity extends AppCompatActivity {
     @Override

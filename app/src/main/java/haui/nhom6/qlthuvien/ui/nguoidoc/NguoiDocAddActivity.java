@@ -10,21 +10,26 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 import haui.nhom6.qlthuvien.MainActivity;
 import haui.nhom6.qlthuvien.R;
-import haui.nhom6.qlthuvien.database.NguoiDocDAO;
 import haui.nhom6.qlthuvien.model.NguoiDoc;
 
-public class NguoiDocAddActivity extends AppCompatActivity {
+public class NguoiDocAddActivity extends AppCompatActivity implements NguoiDocContract.View {
     private EditText edtMa, edtTen, edtCCCD, edtSDT, edtDiaChi;
     private RadioGroup radioGroupGioiTinh;
     private Button btnThem;
+    private NguoiDocPresenter presenter;
     private ImageView icArrowBack, icUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguoidoc_add);
+
+        // Khởi tạo presenter
+        presenter = new NguoiDocPresenter(this, this);
 
         edtMa = findViewById(R.id.edtMaNguoiDoc);
         edtTen = findViewById(R.id.edtTenNguoiDoc);
@@ -53,10 +58,6 @@ public class NguoiDocAddActivity extends AppCompatActivity {
             String diaChi = edtDiaChi.getText().toString().trim();
 
             int selectedId = radioGroupGioiTinh.getCheckedRadioButtonId();
-            if (selectedId == -1) {
-                showToast("Vui lòng chọn giới tính");
-                return;
-            }
 
             RadioButton selectedRadioButton = findViewById(selectedId);
             String gioiTinh = selectedRadioButton.getText().toString();
@@ -83,21 +84,42 @@ public class NguoiDocAddActivity extends AppCompatActivity {
                 showToast("CCCD không hợp lệ (Yêu cầu phải có 12 chữ số)");
                 return;
             }
+            if (selectedId == -1) {
+                showToast("Vui lòng chọn giới tính");
+                return;
+            }
 
             NguoiDoc nd = new NguoiDoc(ma, ten, cccd, sdt, gioiTinh, diaChi);
-            NguoiDocDAO nguoiDocDAO = new NguoiDocDAO(this);
-            long result = nguoiDocDAO.themNguoiDoc(nd);
-
-            if (result > 0) {
-                showToast("Đã thêm người đọc!");
-                finish();
-            } else {
-                showToast("Lỗi khi thêm người đọc");
-            }
+            presenter.addNguoiDoc(nd);
         });
     }
 
-    private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    @Override
+    public void showNguoiDocList(List<NguoiDoc> list) {
+    }
+
+    @Override
+    public void showError(String message) {
+        showToast(message);
+    }
+
+    @Override
+    public void onSuccess(String message) {
+        showToast(message);
+        finish();
+    }
+
+    @Override
+    public void onError(String message) {
+        showToast(message);
+    }
+
+    @Override
+    public void updatePageInfo(int currentPage, int totalPages) {
+
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocActivity;
 import haui.nhom6.qlthuvien.ui.nhanvien.NhanVienActivity;
@@ -63,17 +64,25 @@ public class AdminActivity extends AppCompatActivity {
 
         // Xử lý logout khi nhấn ic_user
         icUser.setOnClickListener(v -> {
-            // Xóa vai trò khỏi SharedPreferences
-            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.remove("role");
-            editor.apply();
+            new AlertDialog.Builder(this)
+                    .setTitle("Xác nhận đăng xuất")
+                    .setMessage("Bạn có chắc chắn muốn đăng xuất không?")
+                    .setPositiveButton("Có", (dialog, which) -> {
+                        // Xóa vai trò khỏi SharedPreferences
+                        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.remove("role");
+                        editor.apply();
 
-            // Chuyển về màn hình đăng nhập
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+                        // Chuyển về màn hình đăng nhập
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .setNegativeButton("Không", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
+
     }
 }

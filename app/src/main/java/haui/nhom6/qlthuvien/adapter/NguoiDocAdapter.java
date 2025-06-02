@@ -13,10 +13,12 @@ import haui.nhom6.qlthuvien.model.NguoiDoc;
 public class NguoiDocAdapter extends BaseAdapter {
     private Context context;
     private List<NguoiDoc> nguoiDocList;
+    private int currentPage;
 
-    public NguoiDocAdapter(Context context, List<NguoiDoc> nguoiDocList) {
+    public NguoiDocAdapter(Context context, List<NguoiDoc> nguoiDocList, int currentPage) {
         this.context = context;
         this.nguoiDocList = nguoiDocList;
+        this.currentPage = currentPage;
     }
 
     @Override
@@ -35,7 +37,7 @@ public class NguoiDocAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView txtTen, txtSDT;
+        TextView txtStt, txtTen, txtSDT;
     }
 
     @Override
@@ -44,6 +46,7 @@ public class NguoiDocAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_nguoidoc, parent, false);
             holder = new ViewHolder();
+            holder.txtStt = convertView.findViewById(R.id.tvStt);
             holder.txtTen = convertView.findViewById(R.id.tvTen);
             holder.txtSDT = convertView.findViewById(R.id.tvSoDienThoai);
             convertView.setTag(holder);
@@ -52,9 +55,21 @@ public class NguoiDocAdapter extends BaseAdapter {
         }
 
         NguoiDoc nd = nguoiDocList.get(position);
-        holder.txtTen.setText(nd.getTenNguoiDoc());
-        holder.txtSDT.setText(nd.getSoDienThoai());
+        if (nd != null) {
+            // Tính số thứ tự dựa trên currentPage và position
+            int itemsPerPage = 10; // Số mục trên mỗi trang
+            int startIndex = (currentPage - 1) * itemsPerPage + 1;
+            int stt = startIndex + position;
+            holder.txtStt.setText(String.valueOf(stt)); // Hiển thị số thứ tự
+            holder.txtTen.setText(nd.getTenNguoiDoc());
+            holder.txtSDT.setText(nd.getSoDienThoai());
+        }
 
         return convertView;
+    }
+
+    public void setData(List<NguoiDoc> list) {
+        this.nguoiDocList = list;
+        notifyDataSetChanged();
     }
 }

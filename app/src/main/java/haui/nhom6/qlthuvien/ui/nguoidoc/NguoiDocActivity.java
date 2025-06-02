@@ -2,6 +2,7 @@ package haui.nhom6.qlthuvien.ui.nguoidoc;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,12 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import haui.nhom6.qlthuvien.AdminActivity;
@@ -24,136 +25,176 @@ import haui.nhom6.qlthuvien.R;
 import haui.nhom6.qlthuvien.UserActivity;
 import haui.nhom6.qlthuvien.adapter.NguoiDocAdapter;
 import haui.nhom6.qlthuvien.model.NguoiDoc;
-import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocContract;
-import haui.nhom6.qlthuvien.ui.nguoidoc.NguoiDocPresenter;
-import haui.nhom6.qlthuvien.ui.sach.SachActivity;
 
 public class NguoiDocActivity extends AppCompatActivity implements NguoiDocContract.View {
 
     private ListView listViewNguoiDoc;
-    private Button btnThemNguoiDoc;
+    private Button btnThemNguoiDoc, btnPrevious, btnNext;
     private EditText edtSearch;
-    private ImageView icArrowBack;
-    private ImageView icUser;
+    private TextView tvPageInfo;
+    private ImageView icArrowBack, icUser;
     private NguoiDocPresenter presenter;
     private NguoiDocAdapter adapter;
-    private List<NguoiDoc> fullList;
+    private int currentPage = 1;
+    private boolean isSearching = false;
+
+    private static final int ACTIVE_BACKGROUND_COLOR = 0xFF000000;
+    private static final int ACTIVE_TEXT_COLOR = 0xFFFDFDFD;
+    private static final int INACTIVE_BACKGROUND_COLOR = 0xFFB0B0B0;
+    private static final int INACTIVE_TEXT_COLOR = 0xFF333333;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nguoidoc);
+        try {
+            setContentView(R.layout.activity_nguoidoc);
 
-        // Ánh xạ view
-        listViewNguoiDoc = findViewById(R.id.listViewNguoiDoc);
-        btnThemNguoiDoc = findViewById(R.id.btnThemNguoiDoc);
-        edtSearch = findViewById(R.id.edt_search);
-        icArrowBack = findViewById(R.id.icArrowBack);
-        icUser = findViewById(R.id.icUser);
+            // Ánh xạ view
+            listViewNguoiDoc = findViewById(R.id.listViewNguoiDoc);
+            btnThemNguoiDoc = findViewById(R.id.btnThemNguoiDoc);
+            btnPrevious = findViewById(R.id.btnPrevious);
+            btnNext = findViewById(R.id.btnNext);
+            tvPageInfo = findViewById(R.id.tvPageInfo);
+            edtSearch = findViewById(R.id.edt_search);
+            icArrowBack = findViewById(R.id.icArrowBack);
+            icUser = findViewById(R.id.icUser);
 
-        // Khởi tạo presenter
-        presenter = new NguoiDocPresenter(this, this);
+            // Khởi tạo presenter
+            presenter = new NguoiDocPresenter(this, this);
 
-        // Gọi load danh sách ban đầu
-        presenter.loadNguoiDocList();
+            // Gọi load danh sách ban đầu
+            loadPage();
 
-        // Xử lý sự kiện nhấn Thêm người đọc
-        btnThemNguoiDoc.setOnClickListener(v -> {
-            Intent intent = new Intent(this, NguoiDocAddActivity.class);
-            startActivity(intent);
-        });
+            // Xử lý sự kiện nhấn Thêm người đọc
+            btnThemNguoiDoc.setOnClickListener(v -> {
+                Intent intent = new Intent(this, NguoiDocAddActivity.class);
+                startActivity(intent);
+            });
 
-        // Xử lý back navigation
-        icArrowBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lấy vai trò từ SharedPreferences
+            // Xử lý back navigation
+            icArrowBack.setOnClickListener(v -> {
                 SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-                String role = prefs.getString("role", "nhanvien"); // Mặc định là nhanvien nếu không có
-
+                String role = prefs.getString("role", null);
                 Intent intent;
-                if (role.equals("quanly")) {
+                if (role == null || role.equals("nhanvien")) {
+                    intent = new Intent(NguoiDocActivity.this, UserActivity.class);
+                } else if (role.equals("quanly")) {
                     intent = new Intent(NguoiDocActivity.this, AdminActivity.class);
                 } else {
-                    intent = new Intent(NguoiDocActivity.this, UserActivity.class);
+                    intent = new Intent(NguoiDocActivity.this, MainActivity.class);
                 }
                 startActivity(intent);
                 finish();
-            }
-        });
-        icUser = findViewById(R.id.icUser);
-        // Xử lý logout khi nhấn ic_user
-        icUser.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            });
+
+            // Xử lý logout khi nhấn ic_user
+            icUser.setOnClickListener(v -> {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            });
+
+            // Click 1 lần để xem chi tiết
+            listViewNguoiDoc.setOnItemClickListener((parent, view, position, id) -> {
+                NguoiDoc selectedNguoiDoc = (NguoiDoc) parent.getItemAtPosition(position);
+                Intent intent = new Intent(NguoiDocActivity.this, NguoiDocDetailActivity.class);
+                intent.putExtra("nguoidoc", selectedNguoiDoc);
+                startActivity(intent);
+            });
+
+            // Long click để xóa với thông báo xác nhận
+            listViewNguoiDoc.setOnItemLongClickListener((parent, view, position, id) -> {
+                NguoiDoc selectedNguoiDoc = (NguoiDoc) parent.getItemAtPosition(position);
+                new AlertDialog.Builder(NguoiDocActivity.this)
+                        .setTitle("Xác nhận xóa")
+                        .setMessage("Bạn có chắc chắn muốn xóa người đọc này?")
+                        .setPositiveButton("Xóa", (dialog, which) -> {
+                            presenter.deleteNguoiDoc(selectedNguoiDoc.getMaNguoiDoc());
+                        })
+                        .setNegativeButton("Hủy", null)
+                        .show();
+                return true;
+            });
+
+            // Chức năng tìm kiếm
+            edtSearch.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String keyword = s.toString().trim();
+                    if (keyword.isEmpty()) {
+                        isSearching = false;
+                        currentPage = 1;
+                        loadPage();
+                        tvPageInfo.setVisibility(View.VISIBLE);
+                        btnPrevious.setVisibility(View.VISIBLE);
+                        btnNext.setVisibility(View.VISIBLE);
+                    } else {
+                        isSearching = true;
+                        presenter.timKiemNguoiDoc(keyword);
+                        tvPageInfo.setVisibility(View.GONE);
+                        btnPrevious.setVisibility(View.GONE);
+                        btnNext.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+
+            // Xử lý chuyển trang
+            btnPrevious.setOnClickListener(v -> {
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadPage();
+                }
+            });
+
+            btnNext.setOnClickListener(v -> {
+                if (currentPage < presenter.getTotalPages()) {
+                    currentPage++;
+                    loadPage();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, "Lỗi khởi tạo: " + e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
-        });
+        }
+    }
 
-        // Click 1 lần để xem chi tiết
-        listViewNguoiDoc.setOnItemClickListener((parent, view, position, id) -> {
-            NguoiDoc selectedNguoiDoc = (NguoiDoc) parent.getItemAtPosition(position);
-            Intent intent = new Intent(NguoiDocActivity.this, NguoiDocDetailActivity.class);
-            intent.putExtra("nguoidoc", selectedNguoiDoc);
-            startActivity(intent);
-        });
-
-        // Long click để xóa với thông báo xác nhận
-        listViewNguoiDoc.setOnItemLongClickListener((parent, view, position, id) -> {
-            NguoiDoc selectedNguoiDoc = (NguoiDoc) parent.getItemAtPosition(position);
-
-            new AlertDialog.Builder(NguoiDocActivity.this)
-                    .setTitle("Xác nhận xoá")
-                    .setMessage("Bạn có chắc chắn muốn xoá người đọc này?")
-                    .setPositiveButton("Xoá", (dialog, which) -> {
-                        presenter.deleteNguoiDoc(selectedNguoiDoc.getMaNguoiDoc());
-                    })
-                    .setNegativeButton("Huỷ", null)
-                    .show();
-
-            return true; // Báo là đã xử lý long click
-        });
-
-        // Thêm chức năng tìm kiếm theo tên
-        edtSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterList(s.toString());
+    private void loadPage() {
+        if (!isSearching) {
+            try {
+                int totalPages = presenter.getTotalPages();
+                if (totalPages == 0) {
+                    currentPage = 1;
+                    showNguoiDocList(null);
+                    updatePageInfo(currentPage, totalPages);
+                    return;
+                }
+                if (currentPage > totalPages) {
+                    currentPage = totalPages;
+                }
+                presenter.loadNguoiDocList(currentPage);
+            } catch (Exception e) {
+                showError("Lỗi tải danh sách: " + e.getMessage());
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Reload danh sách mỗi khi quay lại từ màn hình khác
-        presenter.loadNguoiDocList();
+        loadPage();
     }
 
     @Override
     public void showNguoiDocList(List<NguoiDoc> list) {
-        fullList = new ArrayList<>(list); // Lưu danh sách đầy đủ để lọc
-        adapter = new NguoiDocAdapter(this, list);
+        adapter = new NguoiDocAdapter(this, list, currentPage);
         listViewNguoiDoc.setAdapter(adapter);
-    }
-
-    private void filterList(String query) {
-        if (fullList != null) {
-            List<NguoiDoc> filteredList = new ArrayList<>();
-            for (NguoiDoc nguoiDoc : fullList) {
-                if (nguoiDoc.getTenNguoiDoc().toLowerCase().contains(query.toLowerCase())) {
-                    filteredList.add(nguoiDoc);
-                }
-            }
-            adapter = new NguoiDocAdapter(this, filteredList);
-            listViewNguoiDoc.setAdapter(adapter);
-        }
     }
 
     @Override
@@ -164,11 +205,36 @@ public class NguoiDocActivity extends AppCompatActivity implements NguoiDocContr
     @Override
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        presenter.loadNguoiDocList(); // Cập nhật lại danh sách sau khi xoá
+        loadPage();
     }
 
     @Override
     public void onError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updatePageInfo(int currentPage, int totalPages) {
+        this.currentPage = currentPage;
+        tvPageInfo.setText(String.format("Trang %d/%d", currentPage, totalPages));
+
+        if (currentPage == 1) {
+            btnPrevious.setBackgroundTintList(ColorStateList.valueOf(INACTIVE_BACKGROUND_COLOR));
+            btnPrevious.setTextColor(INACTIVE_TEXT_COLOR);
+        } else {
+            btnPrevious.setBackgroundTintList(ColorStateList.valueOf(ACTIVE_BACKGROUND_COLOR));
+            btnPrevious.setTextColor(ACTIVE_TEXT_COLOR);
+        }
+
+        if (currentPage == totalPages || totalPages == 0) {
+            btnNext.setBackgroundTintList(ColorStateList.valueOf(INACTIVE_BACKGROUND_COLOR));
+            btnNext.setTextColor(INACTIVE_TEXT_COLOR);
+        } else {
+            btnNext.setBackgroundTintList(ColorStateList.valueOf(ACTIVE_BACKGROUND_COLOR));
+            btnNext.setTextColor(ACTIVE_TEXT_COLOR);
+        }
+
+        btnPrevious.setEnabled(currentPage > 1);
+        btnNext.setEnabled(currentPage < totalPages);
     }
 }
